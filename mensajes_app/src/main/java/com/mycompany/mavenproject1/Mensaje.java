@@ -12,12 +12,15 @@ public class Mensaje {
     
     int id_mensaje;
     String mensaje, autor_mensaje, fecha_mensaje;
+   
 
     public Mensaje(){
     
     }
-
-    public Mensaje(String mensaje, String autor_mensaje, String fecha_mensaje) {
+    
+    
+    public Mensaje(int id_mensaje,String mensaje, String autor_mensaje, String fecha_mensaje) {
+        this.id_mensaje = id_mensaje;
         this.mensaje = mensaje;
         this.autor_mensaje = autor_mensaje;
         this.fecha_mensaje = fecha_mensaje;

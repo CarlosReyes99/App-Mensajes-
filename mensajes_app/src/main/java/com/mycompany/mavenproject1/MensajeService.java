@@ -12,6 +12,11 @@ import java.util.Scanner;
  */
 public class MensajeService {
     
+    public static Mensaje[] mensajeLista;
+    
+    public static void recibirObjeto(Mensaje[] mensaje) {
+        MensajeService.mensajeLista = mensaje;
+    }
     public static void crearMensaje(){
         Scanner sc= new Scanner(System.in);
         System.out.println("Escribe tu mensaje: ");
@@ -28,6 +33,14 @@ public class MensajeService {
     }
     
     public static void listarMensaje(){
+        MensajeDao.leerMensaje();
+        for(int i= 0; i<mensajeLista.length;i++){
+            System.out.println("ID MENSAJE: "+mensajeLista[i].getId_mensaje());
+            System.out.println("MENSAJE: "+mensajeLista[i].getMensaje());
+            System.out.println("AUTOR DE MENSAJE: "+mensajeLista[i].getAutor_mensaje());
+            System.out.println("Fecha de mensaje: "+mensajeLista[i].getFecha_mensaje());
+            
+        }
     }
      public static void eliminarMensaje(){
     
