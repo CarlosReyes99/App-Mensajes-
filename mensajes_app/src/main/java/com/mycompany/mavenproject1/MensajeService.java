@@ -52,6 +52,15 @@ public class MensajeService {
     }
     
     public static void actualizarMensaje(){
+        System.out.println("Escribe el ID del mensaje a actualizar: ");
+        String idmsj = sc.nextLine();
+        System.out.println("Escribe el mensaje: ");
+        msj = sc.nextLine();
+        
+        Mensaje mensaje= new Mensaje();
+        mensaje.setId_mensaje(Integer.parseInt(idmsj));
+        mensaje.setMensaje(msj);
+        MensajeDao.actualizarMensajes(mensaje);
     }
     
     

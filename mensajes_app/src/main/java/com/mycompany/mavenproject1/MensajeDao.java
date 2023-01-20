@@ -107,8 +107,35 @@ public class MensajeDao {
     }
     
     public static void actualizarMensajes(Mensaje mensaje){
+        try{
+            PreparedStatement ps= null;
+            ResultSet rs= null;
+            ConnectionToMysql cnt = ConnectionToMysql.getInstance();
+            Connection connect = cnt.getConnection();
+            String query= "UPDATE mensajes SET mensaje = ? WHERE mensajes.id_mensajes = ? ;";
+            ps = connect.prepareStatement(query);
+            ps.setString(1, mensaje.getMensaje());
+            ps.setInt(2, mensaje.getId_mensaje());
+            
+            rs= ps.executeQuery("SELECT * FROM mensajes WHERE id_mensajes = " + mensaje.id_mensaje+";");
+            
+            if (rs.next()) {
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Dato actualizado correctamente");
+                }else{
+                    System.out.println("Error al actualizar el dato");
+                }
+            }else{
+                System.out.println("El mensaje no existe en la tabla");
+            }
+                
+            
+           
+        } catch (SQLException e) {
+            System.out.println("mensaje no creado por: "+e);
+        }
     
     
     }
-    
 }
