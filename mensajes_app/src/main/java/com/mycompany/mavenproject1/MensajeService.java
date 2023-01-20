@@ -12,13 +12,14 @@ import java.util.Scanner;
  */
 public class MensajeService {
     
-    public static Mensaje[] mensajeLista;
-    
+    private static Mensaje[] mensajeLista;
+    private  static Scanner sc= new Scanner(System.in);
+    private static String msj = sc.nextLine();
     public static void recibirObjeto(Mensaje[] mensaje) {
         MensajeService.mensajeLista = mensaje;
     }
     public static void crearMensaje(){
-        Scanner sc= new Scanner(System.in);
+        
         System.out.println("Escribe tu mensaje: ");
         String msj = sc.nextLine();
         System.out.println("Escribe al autor del mensaje:");
@@ -43,6 +44,10 @@ public class MensajeService {
         }
     }
      public static void eliminarMensaje(){
+        System.out.println("Escribe el ID del mensaje a eliminar: ");
+        msj = sc.nextLine();
+        MensajeDao.borrarMensaje(Integer.parseInt(msj));
+         
     
     }
     

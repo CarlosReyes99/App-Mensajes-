@@ -76,7 +76,33 @@ public class MensajeDao {
     }
     
     public static void borrarMensaje(int id_mensaje){
-        
+        try {
+            PreparedStatement ps= null;
+            ResultSet rs= null;
+            ConnectionToMysql cnt = ConnectionToMysql.getInstance();
+            Connection connect = cnt.getConnection();
+            String query= "DELETE FROM MENSAJES WHERE id_mensajes= ?;";
+            ps = connect.prepareStatement(query);
+            ps.setInt(1, id_mensaje);
+            
+            rs= ps.executeQuery("SELECT * FROM mensajes WHERE id_mensajes = " + id_mensaje+";");
+            
+            if (rs.next()) {
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Dato eliminado correctamente");
+                }else{
+                    System.out.println("Error al eliminar el dato");
+                }
+            }else{
+                System.out.println("El dato no existe en la tabla");
+            }
+                
+            
+           
+        } catch (SQLException e) {
+            System.out.println("mensaje no creado por: "+e);
+        }
         
     }
     
